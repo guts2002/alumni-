@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden; /* To prevent horizontal scrolling */
+            background-image: url('pictures/grade.jpg'); /* Adjust the path */
+            background-size: 100% 100%; /* Cover the entire body */
+            background-repeat: no-repeat; /* Prevent background image from repeating */
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff; /* Text color on top of the background */
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .logo-button {
+            
+            cursor: pointer;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for the card */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        form {
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #slide-in {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            transition: left 0.3s ease-in-out;
+        }
+        p {
+            margin: 0;
+            font-size: 2.5em;
+            color: #ffffff86;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Information Form</h2>
+
+    <div class="header">
+        <img src="pictures/ALUM.png" alt="Logo" id="logo" class="logo-button" style="width: 130px; margin-left: 20px; margin-top: -30px;">
+       </div>
+
+    <div class="card">
+        <form action="cards.html" method="post" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telephone">Telephone:</label>
+        <input type="tel" id="telephone" name="telephone">
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="studyYear">Current Year of Study:</label>
+        <input type="text" id="studyYear" name="studyYear" required>
+
+        <label for="school">School:</label>
+        <input type="text" id="school" name="school" required>
+
+        <label for="university">University:</label>
+        <input type="text" id="university" name="university" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="registrationYear">Year of Registration:</label>
+        <input type="text" id="registrationYear" name="registrationYear" required>
+
+        <label for="graduationYear">Year of Graduation:</label>
+        <input type="text" id="graduationYear" name="graduationYear" required>
+
+        <label for="sector">Sector:</label>
+        <input type="text" id="sector" name="sector" placeholder="Example: CLE-INFO" required>
+
+        <label for="clubs">Clubs (comma-separated):</label>
+        <input type="text" id="clubs" name="clubs">
+
+        <label for="interests">Interests:</label>
+        <textarea id="interests" name="interests"></textarea>
+
+        <label for="socialNetworks">Social Networks:</label>
+        <input type="text" id="socialNetworks" name="socialNetworks">
+
+        <label for="currentPost">Current Post (Work):</label>
+        <input type="text" id="currentPost" name="currentPost">
+        <label for="picture">Upload Picture:</label>
+        <input type="file" id="picture" name="picture" accept="image/*" required>
+        <input type="submit" value="Submit">
+        </form>
+    </div>
+  
+    <div id="slide-in">
+        <p>Please fill out all the necessary fields and add your personal photo to create your identity card and add it in the “student cards” area. <a href="cards.html">Click here</a> to see the other students' cards.</p>
+    </div>
+
+    <script>
+        var slideInElement = document.getElementById('slide-in');
+        var logoElement = document.getElementById('logo');
+
+        logoElement.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevents the click event from propagating to the body
+            if (slideInElement.style.left === '-300px') {
+                slideInElement.style.left = '0';
+            } else {
+                slideInElement.style.left = '-300px';
+            }
+        });
+
+        // Close the sliding window when clicking anywhere on the page
+        document.body.addEventListener('click', function() {
+            slideInElement.style.left = '-300px';
+        });
+    </script>
+
+</body>
+</html>  

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Cards</title>
+    <!-- Add this script tag to include Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js"></script>
+
+</head>
+<style>
+    body {
+        background-image: url('pictures/informat.jpg'); /* Update with your actual image file name */
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    
+</style>
+<body>
+
+    <h1>Student Information Cards</h1>
+
+    <div id="cardsContainer">
+        <!-- Cards will be displayed here using JavaScript -->
+    </div>
+
+    <script>
+        // Retrieve form data from sessionStorage
+        var formDataString = sessionStorage.getItem('formData');
+
+        // Check if there is form data
+        if (formDataString) {
+            var formData = JSON.parse(formDataString);
+
+            // Create a card container
+            var cardContainer = document.createElement('div');
+            cardContainer.style.border = '1px solid #ccc';
+            cardContainer.style.padding = '10px';
+            cardContainer.style.margin = '10px';
+            cardContainer.style.borderRadius = '8px';
+            cardContainer.style.display = 'flex';
+
+            // Display the uploaded photo in a circle on the left
+            if (formData['photo']) {
+                var photoContainer = document.createElement('div');
+                photoContainer.style.marginRight = '10px';
+                photoContainer.style.width = '80px';
+                photoContainer.style.height = '80px';
+                photoContainer.style.overflow = 'hidden';
+                photoContainer.style.borderRadius = '50%';
+
+                var photo = document.createElement('img');
+                photo.src = formData['photo'];
+                photo.alt = 'Uploaded Photo';
+                photo.style.maxWidth = '100%';
+                photo.style.borderRadius = '50%';
+
+                photoContainer.appendChild(photo);
+                cardContainer.appendChild(photoContainer);
+            }
+
+            // Create a card to display the form data
+            var cardContent = document.createElement('div');
+            cardContent.innerHTML = '<h2>Name: ' + formData['nom'] + ' ' + formData['prenom'] + '</h2>' +
+                                     '<p>Email: ' + formData['email'] + '</p>' +
+                                     '<p>Phone Number: ' + formData['telephone'] + '</p>';
+            // Add more fields as needed...
+
+            cardContainer.appendChild(cardContent);
+
+            // Display the card in the cards container
+            var cardsContainer = document.getElementById('cardsContainer');
+            cardsContainer.appendChild(cardContainer);
+
+            // Save every submitted form data in local storage
+            var allSubmissions = JSON.parse(localStorage.getItem('allSubmissions')) || [];
+            allSubmissions.push(formData);
+            localStorage.setItem('allSubmissions', JSON.stringify(allSubmissions));
+        }
+        else {
+            // Handle the case where there is no form data
+            cardsContainer.innerHTML = '<p>No form data available.</p>';
+        }
+    </script>
+<!-- Initialize Firebase with your project configuration -->
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyDJ8OYKCcjzM1mCJuPUgkjmSLkFjRQb2wM",
+        authDomain: "final-5ab4e.firebaseapp.com",
+        projectId: "final-5ab4e",
+        storageBucket: "final-5ab4e.appspot.com",
+        measurementId: "G-Q09DJ0L845",
+        appId: "1:463358237772:web:e502d239a502a3d81868e9"
+    };
+  
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  
+</body>
+</html>
